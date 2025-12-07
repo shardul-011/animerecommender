@@ -1,0 +1,12 @@
+setup.py
+animerecomender.egg-info/PKG-INFO
+animerecomender.egg-info/SOURCES.txt
+animerecomender.egg-info/dependency_links.txt
+animerecomender.egg-info/requires.txt
+animerecomender.egg-info/top_level.txt
+app/__init__.py
+config/__init__.py
+src/__init__.py
+utils/__init__.py
+utils/custom_exception.py
+utils/logger.py

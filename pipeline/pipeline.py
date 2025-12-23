@@ -1,3 +1,4 @@
+
 from src.vector_store import VectorStore
 from src.recommender import AnimeRecommender
 from config.config import GROQ_API_KEY, MODEL_NAME
@@ -22,12 +23,17 @@ class AnimeRecommenderPipeline():
             logger.error(f"error initializing AnimeRecommender Pipeline {str(e)}")
             raise CustomException("Error initializing AnimeRecommender Pipeline",e)
         
-        def recommend(self,query:str)->str:
+    def recommend(self,query:str)->str:
             try:
                 logger.info("Getting anime recommendation")
-                recommendation=self.re
-                logger.info("Anime recommendation retrieved successfully")
-                return recommendation
+                recommendation=self.reccomender.get_recommendation(query)
+                if hasattr(recommendation, "content"):
+                    return recommendation.content
+                elif isinstance(recommendation, dict):
+                    return recommendation.get("result", "")
+                else:
+                    return str(recommendation)
+                
             except Exception as e:
                 logger.error(f"error getting anime recommendation {str(e)}")
                 raise CustomException("Error getting anime recommendation",e)

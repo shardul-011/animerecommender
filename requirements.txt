@@ -7,3 +7,4 @@ pandas
 python-dotenv
 langchain_huggingface
 sentence-transformers
+streamlit

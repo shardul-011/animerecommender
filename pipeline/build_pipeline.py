@@ -1,7 +1,6 @@
 from utils.logger import get_logger
 from utils.custom_exception import CustomException
 from dotenv import load_dotenv
-from src.recommender import AnimeRecommender
 from src.vector_store import VectorStore
 from src.data_loader import AnimeDataLoader
 
@@ -26,3 +25,6 @@ def main():
     except Exception as e:
         logger.error(f"Error in Building Pipeline: {str(e)}")
         raise CustomException("Error in Building Pipeline",e)
+    
+if __name__=="__main__":
+    main()

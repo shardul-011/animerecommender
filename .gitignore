@@ -1,3 +1,5 @@
 .env
-setup.py
-env.env 
+env/
+animerecomender.egg-info/
+logs/
+

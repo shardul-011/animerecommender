@@ -1,3 +1,4 @@
+import os
 from langchain_community.vectorstores import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from dotenv import load_dotenv
@@ -25,12 +26,17 @@ class VectorStore():
             chunk_overlap=0
             )
         
-        texts=text_splitter.split_documents()
+        texts=text_splitter.split_documents(data)
         
         db=Chroma.from_documents(texts,self.embedding_model,persist_directory=self.persist_directory)
         db.persist()  ##to saave locally in our system
         
     def load_vectorstore(self):
+        if not os.path.exists(self.persist_directory):
+            raise RuntimeError(
+            f"Vector store not found at {self.persist_directory}. "
+            "Run build_and_save_vectorstore() first."
+        )
         return Chroma(
             persist_directory=self.persist_directory,embedding_function=self.embedding_model)
         
